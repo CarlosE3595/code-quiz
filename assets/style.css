@@ -5,6 +5,7 @@
     border: 1px solid rgb(0, 106, 255);
     font-family: monospace;
     color: white;
+    border-radius: 5px;
 }
 
 body {
@@ -56,6 +57,7 @@ li {
 
 /* header/quiz intro section */
 .quiz-intro, main {
+    display: block;
     margin-bottom: 30vh;
     margin-left: 10%;
     margin-right: 10%;
@@ -74,4 +76,24 @@ li {
 /* main quiz content */
 main {
     display: block;
+}
+
+/* question screen */
+.question-screen {
+    display: block;
+}
+
+/* quiz finish screen */
+.quiz-finish-screen {
+    display: none;
+}
+
+/* highscores screen */
+.highscroes-screen {
+    display: block;
+}
+
+.highscroes-screen ol {
+    overflow: scroll;
+    max-height: 200px;
 }
