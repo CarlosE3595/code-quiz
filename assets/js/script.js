@@ -2,7 +2,6 @@ var startButtonEl = document.querySelector("#start-quiz-button");
 var userFormEl = document.querySelector("#user-form");
 var startContainerEl = document.querySelector("#start-quiz-container");
 var questionContainerEl = document.querySelector("#question-container");
-var choicesArray = document.querySelectorAll(".choice");
 var timerDisplayEl = document.querySelector("#timer-display");
 var questionDisplay = document.querySelector(".question-display");
 var answersList = document.querySelector("#answers-list");
@@ -76,7 +75,7 @@ function actionHandler(event) {
                     getQuestions();
                     }
                     
-                    // getQuestions();
+                
                 }
             }else{
                 showForm();
