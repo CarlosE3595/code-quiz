@@ -4,12 +4,16 @@ var startContainerEl = document.querySelector("#start-quiz-container");
 var questionContainerEl = document.querySelector("#question-container");
 var choicesArray = document.querySelectorAll(".choice");
 var timerDisplayEl = document.querySelector("#timer-display");
-var questionDisplay = document.querySelector(".question-display")
-var answersList = document.querySelector("#answers-list")
-var answer1 = document.querySelector("#answer-1")
-var answer2 = document.querySelector("#answer-2")
-var answer3 = document.querySelector("#answer-3")
-var answer4 = document.querySelector("#answer-4")
+var questionDisplay = document.querySelector(".question-display");
+var answersList = document.querySelector("#answers-list");
+var answer1 = document.querySelector("#answer-1");
+var answer2 = document.querySelector("#answer-2");
+var answer3 = document.querySelector("#answer-3");
+var answer4 = document.querySelector("#answer-4");
+var hscoreOlEl = document.querySelector("#highscores-list");
+var clearLocalEl = document.querySelector("#clear-local");
+var goBackEl = document.querySelector("#go-back");
+
 var quizQuestionList = ["1) Which of the following is the proper file name for an html file?","2) How do you style any given element inside an html file using CSS?","3) How do you get your JavaScript file to respond to a click event happening in your browser?","4) Which of the following is used to link a class or id from your HTML file to your JavaScript file? ","5) Which of the following is the proper syntax to add a paragraph to your HTML file?"]
 var quizAnswers = ["C) index.html","B) Using IDs and Classes","A) By using an event listener in JavaScript code.","A) .querySelector","B) <p></p>"]
 var allChoices = [
@@ -32,6 +36,10 @@ if (!scores) {
 }
 
 function startGame() {
+    var highScoreEl = document.querySelector(".highscores-screen");
+    highScoreEl.classList.remove("highscores-screen-display");   
+    highScoreEl.classList.add("highscores-screen");  
+
     interval = setInterval(timerTick, 1000);
     var questionsEl = document.querySelector("#question-container");
     questionsEl.classList.add("question-screen"); 
@@ -41,19 +49,16 @@ function startGame() {
 function timerTick() {
     quizTimer--;
     timerDisplayEl.innerText= "Time: " + quizTimer
-    if(quizTimer === 0) {
-        gameOver();
+    if(quizTimer <= 0) {
+        quizTimer = 0;
+        showForm();
     }
-   
 }
 
 function actionHandler(event) {
-//    debugger;
     if (event){
-        // var targetEl
         console.log(event.target)
         var currentTarget = event.target
-
             if (index < 4) {
                 if(currentTarget.matches("#answer-1")||currentTarget.matches("#answer-2")||currentTarget.matches("#answer-3")||currentTarget.matches("#answer-4")) {
                     console.log(currentTarget.textContent)
@@ -73,26 +78,14 @@ function actionHandler(event) {
                     
                     // getQuestions();
                 }
-
-                
             }else{
-
-                clearInterval(interval);
                 showForm();
-            }
- 
-            
-
-
-
+            }   
     }
-
-
-
-
 }
 
 function showForm() {
+    clearInterval(interval);
     var questionsEl = document.querySelector("#question-container");
     questionsEl.classList.remove("question-screen");   
     questionsEl.classList.add("question-screen-hidden");   
@@ -118,6 +111,21 @@ function endQuiz() {
     var highScoreEl = document.querySelector(".highscores-screen");
     highScoreEl.classList.remove("highscores-screen");   
     highScoreEl.classList.add("highscores-screen-display");   
+    for (let i = 0; i < scores.length; i++) {
+        var scoreLiEl = document.createElement("li");
+        scoreLiEl.innerText = scores[i].user + " - " + scores[i].score;
+        hscoreOlEl.appendChild(scoreLiEl);
+    }
+
+}
+
+function clearLocal() {
+    localStorage.removeItem("scores");
+    hscoreOlEl.innerHTML = "";
+}
+
+function goBack() {
+    location.reload();
 }
 
 function populateText() {
@@ -138,41 +146,12 @@ function gameOver() {
 function getQuestions() {
 
     questionDisplay.innerText= quizQuestionList[index]
-    // startContainerEl.classList.add("hide");
-    // questionContainerEl.classList.remove("hide");
-    // for (let i = 0; i < choicesArray.length; i++) {
-    //     choicesArray[i].addEventListener("click", function (event) {
-    //         console.log(event.target);
-    //         var isCorrect = event.target.getAttribute("data-correct");
-    //         if (isCorrect === "true") {
-    //             console.log("You have selected the right answer")
-    //         } else {
-    //             console.log("Wrong!")
-    //         }
-    //     })
-    // }
+
     populateText();
    
 }
 answersList.addEventListener("click", actionHandler)
 startButtonEl.addEventListener("click", startGame)
 userFormEl.addEventListener("submit", formHandler)
-
-
-
-
-
-// var answersList = document.querySelector("#answers-list")
-// var highscoresList = document.querySelector("#highscores-list")
-// var startQuizBtn = document.querySelector("#start-quiz-btn")
-
-
-
-
-function setNextQuestion() {
-
-}
-
-function selectAnswer() {
-
-}
+clearLocalEl.addEventListener("click", clearLocal)
+goBackEl.addEventListener("click", goBack)
