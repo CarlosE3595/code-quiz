@@ -30,14 +30,14 @@
                 <!-- main quiz content -->
                 <main>
 
-                    <section id="question-container" class="question-screen">
+                    <section id="question-container" class="question-screen-hidden">
                         <h2 class="question-display">Question Here</h2>
                         <ul id="answers-list">
                             <!-- this will be generated in js -->
-                            <li  class="choice" data-correct="false"><button id="answer-1">Answer 1</button></li>
-                            <li  class="choice" data-correct="false"><button id="answer-2">Answer 2</button></li>
-                            <li  class="choice" data-correct="false"><button id="answer-3">Answer 3</button></li>
-                            <li  class="choice" data-correct="true"><button id="answer-4">Answer 4</button></li>
+                            <li  class="choice" ><button id="answer-1">Answer 1</button></li>
+                            <li  class="choice" ><button id="answer-2">Answer 2</button></li>
+                            <li  class="choice" ><button id="answer-3">Answer 3</button></li>
+                            <li  class="choice" ><button id="answer-4">Answer 4</button></li>
                         </ul>
                     </section>
 
@@ -49,6 +49,15 @@
                             <input type="text">
                             <button>Submit</button>
                         </div>
+                    </section>
+                    <section id="user-form" class="user-form-hidden">
+                        <form>
+                            <div class="form-group">
+                                <label for="initials">Enter initials:</label>
+                                <input type="text" name="initials">
+                                <button type="submit">Save</button>    
+                            </div>
+                        </form>
                     </section>
 
                     <section class="highscores-screen">

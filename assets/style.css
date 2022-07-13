@@ -81,8 +81,26 @@ main {
 }
 
 /* question screen */
+.question-screen-hidden {
+    display: none;
+} 
+
 .question-screen {
     display: block;
+}
+
+.user-form-hidden {
+    display: none;
+}
+
+
+.user-form-display {
+    display: block;
+}
+
+form input {
+    padding: 10px;
+    color: black;
 }
 
 /* quiz finish screen */
@@ -91,11 +109,15 @@ main {
 }
 
 /* highscores screen */
-.highscroes-screen {
+.highscores-screen {
+    display: none;
+}
+
+.highscores-screen-display {
     display: block;
 }
 
-.highscroes-screen ol {
+.highscores-screen ol {
     overflow: scroll;
     max-height: 200px;
 }
